@@ -59,7 +59,7 @@ const Navbar = () => {
         <div
           className={`${
             isMenuOpen ? 'scale-100' : 'scale-0'
-          } md:scale-100 transform transition-transform duration-300 origin-top md:block md:flex md:space-x-4 absolute md:relative top-14 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent z-20`}
+          } md:scale-100 transform transition-transform duration-300 origin-top  md:flex md:space-x-4 absolute md:relative top-14 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent z-20 lg:hidden`}
         >
           {['/', '/profile', '/about', '/sign-in', '/sign-up'].map(
             (path, index) => (
