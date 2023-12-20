@@ -25,4 +25,5 @@ env
 *.njsproj
 *.sln
 *.sw?
+*.env
 
