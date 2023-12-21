@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { currentUser } = useSelector((state) => state.user)
 
   return (
     <nav className='bg-gray-800 p-4 shadow-lg'>
@@ -20,18 +22,27 @@ const Navbar = () => {
           } scale-100 transform transition-transform duration-300 origin-top md:flex 
           space-x-4 bg-gray-800 bg-transparent z-20 hidden`}
         >
-          {['/', '/profile', '/about', '/sign-in', '/sign-up'].map(
-            (path, index) => (
-              <NavLink
-                key={index}
-                to={path}
-                className='block text-white px-4 py-2 rounded mt-1 md:mt-0 hover:bg-gray-700 transition duration-300'
-                activeClassName='text-gray-300 md:text-gray-400'
-              >
-                {path === '/' ? 'Home' : path.substring(1)}
-              </NavLink>
-            )
-          )}
+          {currentUser
+            ? ['/', '/profile', '/about'].map((path, index) => (
+                <NavLink
+                  key={index}
+                  to={path}
+                  className='block text-white px-4 py-2 rounded mt-1 md:mt-0 hover:bg-gray-700 transition duration-300'
+                  activeClassName='text-gray-300 md:text-gray-400'
+                >
+                  {path === '/' ? 'Home' : path.substring(1)}
+                </NavLink>
+              ))
+            : ['/', '/about', '/sign-in', '/sign-up'].map((path, index) => (
+                <NavLink
+                  key={index}
+                  to={path}
+                  className='block text-white px-4 py-2 rounded mt-1 md:mt-0 hover:bg-gray-700 transition duration-300'
+                  activeClassName='text-gray-300 md:text-gray-400'
+                >
+                  {path === '/' ? 'Home' : path.substring(1)}
+                </NavLink>
+              ))}
         </div>
 
         <button
@@ -61,18 +72,27 @@ const Navbar = () => {
             isMenuOpen ? 'scale-100' : 'scale-0'
           } md:scale-100 transform transition-transform duration-300 origin-top  md:flex md:space-x-4 absolute md:relative top-14 left-0 w-full md:w-auto bg-gray-800 md:bg-transparent z-20 lg:hidden`}
         >
-          {['/', '/profile', '/about', '/sign-in', '/sign-up'].map(
-            (path, index) => (
-              <NavLink
-                key={index}
-                to={path}
-                className='block text-white px-4 py-2 rounded mt-1 md:mt-0 hover:bg-gray-700 transition duration-300'
-                activeClassName='text-gray-300 md:text-gray-400'
-              >
-                {path === '/' ? 'Home' : path.substring(1)}
-              </NavLink>
-            )
-          )}
+          {currentUser
+            ? ['/', '/profile', '/about'].map((path, index) => (
+                <NavLink
+                  key={index}
+                  to={path}
+                  className='block text-white px-4 py-2 rounded mt-1 md:mt-0 hover:bg-gray-700 transition duration-300'
+                  activeClassName='text-gray-300 md:text-gray-400'
+                >
+                  {path === '/' ? 'Home' : path.substring(1)}
+                </NavLink>
+              ))
+            : ['/', '/about', '/sign-in', '/sign-up'].map((path, index) => (
+                <NavLink
+                  key={index}
+                  to={path}
+                  className='block text-white px-4 py-2 rounded mt-1 md:mt-0 hover:bg-gray-700 transition duration-300'
+                  activeClassName='text-gray-300 md:text-gray-400'
+                >
+                  {path === '/' ? 'Home' : path.substring(1)}
+                </NavLink>
+              ))}
         </div>
 
         <div className='hidden md:block'>
