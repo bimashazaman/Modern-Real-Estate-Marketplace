@@ -33,7 +33,7 @@ const SignUp = () => {
         )
         console.log(response.data)
         // Redirect user after successful signup
-        navigate('/')
+        navigate('/sign-in')
       } catch (error) {
         console.error('Signup error:', error.response || error)
         // Handle errors (e.g., show error message)
