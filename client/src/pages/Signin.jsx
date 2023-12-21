@@ -3,11 +3,14 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { BASE_URL, SIGNIN_ENDPOINT } from '../../constant'
+import { signInFailure, signInSuccess } from '../redux/user/userSlice'
 
 const SignIn = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   // Formik configuration
   const formik = useFormik({
@@ -27,12 +30,12 @@ const SignIn = () => {
           `${BASE_URL}${SIGNIN_ENDPOINT}`,
           values
         )
-        console.log(response.data)
-        // Redirect user after successful signIn
+        console.log('SignIn Success:', response.data)
+        dispatch(signInSuccess(response.data))
         navigate('/')
       } catch (error) {
-        console.error('SignIn error:', error.response || error)
-        // Handle errors (e.g., show error message)
+        console.error('SignIn Error:', error.response || error)
+        dispatch(signInFailure(error.toString()))
       }
     },
   })

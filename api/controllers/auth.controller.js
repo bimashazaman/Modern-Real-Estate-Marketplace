@@ -62,11 +62,7 @@ export const signIn = async (req, res, next) => {
 
     const { password: pass, ...rest } = validUser._doc
 
-    res.status(200).json({
-      message: 'Login successful',
-      userId: validUser._id, // Send only necessary user data
-      user: rest,
-    })
+    res.status(200).json(validUser)
   } catch (error) {
     next(error)
   }
