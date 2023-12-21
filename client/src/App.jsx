@@ -5,14 +5,20 @@ import About from './pages/About'
 import Signin from './pages/Signin'
 import SignUp from './pages/SignUp'
 import Navbar from './components/Navbar'
+import { useSelector } from 'react-redux'
 
 function App() {
+  const { currentUser } = useSelector((state) => state.user)
+
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route
+          path='/profile'
+          element={currentUser ? <Profile /> : <SignUp />}
+        />
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<Signin />} />
         <Route path='/sign-up' element={<SignUp />} />
