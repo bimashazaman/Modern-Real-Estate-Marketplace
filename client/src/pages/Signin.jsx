@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 
 import { BASE_URL, SIGNIN_ENDPOINT } from '../../constant'
 import { signInFailure, signInSuccess } from '../redux/user/userSlice'
+import OAuth from '../components/OAuth'
 
 const SignIn = () => {
   const navigate = useNavigate()
@@ -99,6 +100,8 @@ const SignIn = () => {
               Sign In
             </button>
           </div>
+
+          <OAuth />
         </form>
       </div>
     </div>

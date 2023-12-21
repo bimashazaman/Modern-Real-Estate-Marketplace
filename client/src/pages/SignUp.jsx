@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 import { BASE_URL, SIGNUP_ENDPOINT } from '../../constant'
+import OAuth from '../components/OAuth'
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -123,6 +124,7 @@ const SignUp = () => {
               Sign Up
             </button>
           </div>
+          <OAuth />
         </form>
       </div>
     </div>
