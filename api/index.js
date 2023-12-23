@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import helmet from 'helmet'
+import cookieParser from 'cookie-parser'
 
 import userRouter from './routes/user.route.js'
 import authRouter from './routes/auth.route.js'
@@ -28,6 +29,8 @@ app.use(cors())
 
 console.log('Connection String:', process.env.MONGO_URL)
 
+app.use(cookieParser())
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -37,7 +40,7 @@ mongoose
 
 //Routes
 
-app.use('/api/users', userRouter)
+app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 
 // app.use(express.static(path.join(__dirname, '/client/dist')))
