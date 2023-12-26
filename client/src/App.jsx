@@ -6,6 +6,7 @@ import Signin from './pages/Signin'
 import SignUp from './pages/SignUp'
 import Navbar from './components/Navbar'
 import { useSelector } from 'react-redux'
+import CreateListing from './pages/CreateListing'
 
 function App() {
   const { currentUser } = useSelector((state) => state.user)
@@ -22,6 +23,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<Signin />} />
         <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/create-listing' element={<CreateListing />} />
       </Routes>
     </BrowserRouter>
   )
