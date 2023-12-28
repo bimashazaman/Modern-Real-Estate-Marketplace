@@ -56,13 +56,12 @@ export const signIn = async (req, res, next) => {
     res.cookie('access_token', token, {
       httpOnly: true,
       expires: new Date(Date.now() + oneHour),
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'None',
     })
 
     const { password: pass, ...rest } = validUser._doc
 
-    res.status(200).json(validUser)
+    res.status(200).json({ user: rest, token: token })
   } catch (error) {
     next(error)
   }
@@ -97,7 +96,7 @@ export const google = async (req, res, next) => {
       res
         .cookie('access_token', token, { httpOnly: true })
         .status(200)
-        .json(rest)
+        .json({ user: rest, token: token })
     }
   } catch (error) {
     next(error)

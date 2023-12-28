@@ -32,6 +32,12 @@ const SignUp = () => {
           `${BASE_URL}${SIGNUP_ENDPOINT}`,
           values
         )
+
+        const data = response.data
+
+        // Store the token
+        localStorage.setItem('token', data.token) // Storing token in local storage
+
         console.log(response.data)
         // Redirect user after successful signup
         navigate('/sign-in')

@@ -32,6 +32,12 @@ const SignIn = () => {
           values
         )
         console.log('SignIn Success:', response.data)
+        const data = response.data
+
+        // Store the token
+        localStorage.setItem('token', data.token) // Storing token in local storage
+
+        console.log(response.data)
         dispatch(signInSuccess(response.data))
         navigate('/')
       } catch (error) {

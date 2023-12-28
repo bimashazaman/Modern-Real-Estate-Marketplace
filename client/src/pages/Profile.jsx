@@ -20,8 +20,13 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { BASE_URL } from '../../constant.js'
 
+const getToken = () => localStorage.getItem('token')
+
 export default function Profile() {
   const fileRef = useRef(null)
+
+  const token = getToken()
+
   const { currentUser, loading, error } = useSelector((state) => state.user)
   const [file, setFile] = useState(undefined)
   const [filePerc, setFilePerc] = useState(0)
@@ -70,7 +75,7 @@ export default function Profile() {
     try {
       dispatch(updateUserStart())
       const res = await fetch(
-        `${BASE_URL}/api/user/update/${currentUser._id}`,
+        `${BASE_URL}/api/user/update/${currentUser.user._id}`,
         {
           method: 'POST',
           headers: {
@@ -96,9 +101,10 @@ export default function Profile() {
     try {
       dispatch(deleteUserStart())
       const res = await fetch(
-        `${BASE_URL}/api/user/delete/${currentUser._id}`,
+        `${BASE_URL}/api/user/delete/${currentUser.user._id}`,
         {
           method: 'DELETE',
+          Authorization: `Bearer ${token}`,
         }
       )
       const data = await res.json()
@@ -131,7 +137,12 @@ export default function Profile() {
     try {
       setShowListingsError(false)
       const res = await fetch(
-        `${BASE_URL}/api/user/listings/${currentUser._id}`
+        `${BASE_URL}/api/user/listings/${currentUser.user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
       const data = await res.json()
       if (data.success === false) {
@@ -141,7 +152,9 @@ export default function Profile() {
 
       setUserListings(data)
     } catch (error) {
+      console.log(error)
       setShowListingsError(true)
+      console.log(showListingsError)
     }
   }
 
@@ -149,6 +162,9 @@ export default function Profile() {
     try {
       const res = await fetch(`${BASE_URL}/api/listing/delete/${listingId}`, {
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       const data = await res.json()
       if (data.success === false) {
