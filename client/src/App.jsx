@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import CreateListing from './pages/CreateListing'
 import UpdateListing from './pages/UpdateListing'
 import Listing from './pages/Listing'
+import Search from './pages/Search'
 
 function App() {
   const { currentUser } = useSelector((state) => state.user)
@@ -22,6 +23,7 @@ function App() {
           path='/profile'
           element={currentUser ? <Profile /> : <SignUp />}
         />
+        <Route path='/search' element={<Search />} />
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<Signin />} />
         <Route path='/sign-up' element={<SignUp />} />
