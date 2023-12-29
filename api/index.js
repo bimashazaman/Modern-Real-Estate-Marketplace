@@ -26,6 +26,16 @@ app.use(
   })
 )
 
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", 'http://localhost:3000'], // Add your server URL here
+      // ... other directives ...
+    },
+  })
+)
+
 // Enabling CORS for cross-origin requests
 app.use(cors())
 
