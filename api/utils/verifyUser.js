@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import { errorHandler } from './error.js'
-import { json } from 'express'
 
 export const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization
